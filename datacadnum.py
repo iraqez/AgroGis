@@ -2,7 +2,7 @@ import json, requests
 url_point = 'http://212.26.144.110/kadastrova-karta/find-Parcel'
 url_data = 'http://212.26.144.110/kadastrova-karta/get-parcel-Info'
 
-cadnum='6822789100:03:002:0001'
+cadnum='6810100000:07:003:0064'
 
 params_point = dict(
     cadnum=cadnum,
@@ -14,6 +14,8 @@ params_data = dict(
     quartal = cadnum.split(':')[2],
     parcel = cadnum.split(':')[3],
 )
+# resp = (json.loads(requests.get(url=url_data, params=params_point).text))
+# print(resp)
 
 resp = (json.loads(requests.get(url=url_point, params=params_point).text)['data'])[0]
 try:
