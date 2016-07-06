@@ -2,7 +2,8 @@ import json, requests
 url_point = 'http://212.26.144.110/kadastrova-karta/find-Parcel'
 url_data = 'http://212.26.144.110/kadastrova-karta/get-parcel-Info'
 
-cadnum='6810100000:07:003:0064'
+#cadnum='6810100000:07:003:0064'
+cadnum = input('Вставьте кадастровый номер: ')
 
 params_point = dict(
     cadnum=cadnum,
