@@ -3,8 +3,8 @@ import coordinates
 url_point = 'http://212.26.144.110/kadastrova-karta/find-Parcel'
 url_data = 'http://212.26.144.110/kadastrova-karta/get-parcel-Info'
 
-cadnum='0524587000:01:003:0358'
-#cadnum = input('Вставьте кадастровый номер: ')
+#cadnum='0524587000:01:003:0358'
+cadnum = input('Вставьте кадастровый номер: ')
 
 params_point = dict(
     cadnum=cadnum,
