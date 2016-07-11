@@ -5,7 +5,7 @@ import postgis
 import datacadnum
 
 cd = datacadnum.resp
-conn = psycopg2.connect("host=agro2012.com.ua dbname=agro2012 user=postgres password=workfree")
+conn = psycopg2.connect("host=gis.agro2012.com.ua dbname=agro2012 user=postgres password=workfree")
 cur = conn.cursor()
 
 s1 = datacadnum.params_point.get('cadnum')
@@ -17,12 +17,15 @@ if s[0] == False:
     lng = str(datacadnum.resp.get('long'))
     cadnum = datacadnum.resp.get('cadnum')
     geom = postgis.Point(x=lng, y=lat, srid=4326)
+    area = str(datacadnum.resp.get('area'))
 
-    cur.execute('INSERT INTO cadnum(geom, lat, lng, cadnum) VALUES (%s, %s, %s, %s)',(geom, lat, lng, cadnum))
+    cur.execute('INSERT INTO cadnum(geom, lat, lng, cadnum, area) VALUES (%s, %s, %s, %s, %s)', (geom, lat, lng, cadnum, area))
     conn.commit()
-    print('Номер {} успешно добавлен!!!'.format(s1) )
+    logstr = ('Номер {} успешно добавлен!!!'.format(s1) )
 else:
-    print('Номер {} существует в базе!!!'.format(s1) )
+    logstr = ('Номер {} существует в базе!!!'.format(s1) )
 
 cur.close()
 conn.close()
+
+print(logstr)
