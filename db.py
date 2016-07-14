@@ -1,7 +1,6 @@
 import psycopg2
 import postgis
 
-
 import datacadnum
 
 cd = datacadnum.resp
