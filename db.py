@@ -8,7 +8,7 @@ conn = psycopg2.connect("host=gis.agro2012.com.ua dbname=agro2012 user=postgres 
 cur = conn.cursor()
 
 s1 = datacadnum.params_point.get('cadnum')
-cur.execute('SELECT count(*) FROM cadnum where cadnum = %s', (s1,))
+cur.execute('SELECT count(*) FROM cadnum_point where cadnum = %s', (s1,))
 s = cur.fetchone()
 
 if s[0] == False:
@@ -18,7 +18,7 @@ if s[0] == False:
     geom = postgis.Point(x=lng, y=lat, srid=4326)
     area = str(datacadnum.resp.get('area'))
 
-    cur.execute('INSERT INTO cadnum(geom, lat, lng, cadnum, area) VALUES (%s, %s, %s, %s, %s)', (geom, lat, lng, cadnum, area))
+    cur.execute('INSERT INTO cadnum_point(geom, cadnum) VALUES (%s, %s)', (geom, cadnum))
     conn.commit()
     logstr = ('Номер {} успешно добавлен!!!'.format(s1) )
 else:
